@@ -16,12 +16,8 @@
 package com.account.domain.repositories;
 
 import com.account.domain.entities.Account;
-import com.account.domain.enums.Currency;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 public interface ReactiveAccountRepository extends ReactiveCrudRepository<Account, String> {
 
-    Flux<Account> findByCurrency(Mono<Currency> currency);
 }
