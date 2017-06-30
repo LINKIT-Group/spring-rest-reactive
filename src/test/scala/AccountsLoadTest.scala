@@ -10,8 +10,8 @@ import scala.concurrent.duration._
 class AccountsLoadTest extends Simulation {
   val rampUpTimeSecs = 5
   val testTimeSecs = 60
-  val noOfUsers = 300
-  val noOfRequestPerSeconds = 1500
+  val noOfUsers = 200
+  val noOfRequestPerSeconds = 1000
 
   val baseURL = "http://localhost:8080"
   val accountResourcePath = "/accounts"
