@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    
+    working_directory: ~/circleci-spring-data-rest
+
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: circleci-spring-data-rest-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: circleci-spring-data-rest-{{ checksum "pom.xml" }}
+      
+      - run: mvn package
+      
+      - store_test_results:
+          path: target/surefire-reports
+      
+      - store_artifacts:
+          path: target/spring-data-rest-0.0.1-SNAPSHOT.jar
+
