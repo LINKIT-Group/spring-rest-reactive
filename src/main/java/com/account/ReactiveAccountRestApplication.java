@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
  * Created by rodrigo.chaves on 27/06/2017.
  */
 @SpringBootApplication
-@EnableAutoConfiguration
 @EnableReactiveMongoRepositories
 public class ReactiveAccountRestApplication {
     public static void main(String[] args) {
