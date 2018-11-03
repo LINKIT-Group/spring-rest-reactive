@@ -4,7 +4,6 @@ import com.account.domain.entities.Account;
 import com.account.domain.enums.Currency;
 import com.account.domain.repositories.ReactiveAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoActionOperation;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,8 +15,12 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/accounts")
 public class AccountController {
 
-    @Autowired
     private ReactiveAccountRepository reactiveAccountRepository;
+
+    @Autowired
+    public AccountController(ReactiveAccountRepository accountRepository) {
+        reactiveAccountRepository = accountRepository;
+    }
 
     @RequestMapping(value = "/currency/{currency}", method = RequestMethod.GET)
     Flux<Account> findByCurrency(@PathVariable String currency) {
