@@ -22,27 +22,27 @@ public class AccountController {
         reactiveAccountRepository = accountRepository;
     }
 
-    @RequestMapping(value = "/currency/{currency}", method = RequestMethod.GET)
+    @GetMapping("/currency/{currency}")
     Flux<Account> findByCurrency(@PathVariable String currency) {
         return reactiveAccountRepository.findByCurrency(Currency.fromValue(currency));
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     Mono<Account> findById(@PathVariable String id) {
         return reactiveAccountRepository.findById(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping("/")
     Mono<Account> save(@RequestBody Account account) {
         return reactiveAccountRepository.save(account);
     }
 
-    @RequestMapping(value = "/batch", method = RequestMethod.POST)
+    @PostMapping("/batch")
     Flux<Account> saveAll(@RequestBody Flux<Account> accounts) {
         return reactiveAccountRepository.saveAll(accounts);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     Flux<Account> findAll() {
         return reactiveAccountRepository.findAll();
     }
